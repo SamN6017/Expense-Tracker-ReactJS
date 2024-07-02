@@ -1,12 +1,12 @@
 function AppReducer(state, action) {
   switch (action.type) {
-    case "ADD_TRANSCATION":
+    case "ADD_TRANSACTION":
       return {
         ...state,
         transactions: [action.payload, ...state.transactions],
       };
 
-    case "REMOVE_TRANSCATION":
+    case "REMOVE_TRANSACTION":
       return {
         ...state,
         transactions: state.transactions.filter(

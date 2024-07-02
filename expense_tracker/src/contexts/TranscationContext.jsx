@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const TranscationContext = createContext({ transcations: [] });
+export const TranscationContext = createContext();

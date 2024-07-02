@@ -2,20 +2,32 @@ import React, { useContext } from "react";
 import { TranscationContext } from "../contexts/TranscationContext";
 
 const TransactionList = () => {
-  const { transcations } = useContext(TranscationContext);
+  const { transactions, deleteTransaction } = useContext(TranscationContext);
 
   return (
-    <>
-      <h3>History</h3>
-      <ul className="list">
-        {transcations.map((item) => (
-          <li className={item.amount < 0 ? "minus" : "plus"}>
-            {item.text} <span>{Math.abs(item.amount)}</span>
-            {/* <button onClick={() => deleteTransaction(transaction.id)} className="delete-btn">x</button> */}
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="transaction-history">
+      <h2>Transaction History</h2>
+      {transactions.map((transaction) => (
+        <div
+          key={transaction.id}
+          className={`transaction-item ${
+            transaction.amount < 0 ? "expense" : "income"
+          }`}
+        >
+          <p>{transaction.description}</p>
+          <p>
+            {transaction.amount < 0 ? "-" : "+"}$
+            {Math.abs(transaction.amount).toFixed(2)}
+          </p>
+          <button
+            onClick={() => deleteTransaction(transaction.id)}
+            className="delete-btn"
+          >
+            x
+          </button>
+        </div>
+      ))}
+    </div>
   );
 };
 

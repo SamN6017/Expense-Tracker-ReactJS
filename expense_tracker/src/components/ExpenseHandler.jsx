@@ -9,11 +9,11 @@ function ExpenseHandler() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    amount = expenseType === "Expense" ? -amount : amount;
+    const amount1 = expenseType === "Expense" ? -amount : amount;
     const newTransaction = {
-      id: Math.floor(Math.random() * 1000),
+      id: Math.floor(Math.random() * 1000000),
       description,
-      amount: +amount,
+      amount: +amount1,
     };
 
     addTransaction(newTransaction);
@@ -23,7 +23,6 @@ function ExpenseHandler() {
 
   return (
     <div>
-      <h1>Expense Tracker</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="amount">
           Amount

@@ -1,7 +1,11 @@
 import AppReducer from "./AppReducer";
+import { TranscationContext } from "./TranscationContext";
+import { useReducer } from "react";
 
 export const TransactionProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, { transaction: [] });
+  const initialState = { transactions: [] };
+
+  const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Actions
   function deleteTransaction(id) {
@@ -19,7 +23,7 @@ export const TransactionProvider = ({ children }) => {
   }
 
   return (
-    <TransactionContext.Provider
+    <TranscationContext.Provider
       value={{
         transactions: state.transactions,
         deleteTransaction,
@@ -27,6 +31,6 @@ export const TransactionProvider = ({ children }) => {
       }}
     >
       {children}
-    </TransactionContext.Provider>
+    </TranscationContext.Provider>
   );
 };
